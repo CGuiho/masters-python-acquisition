@@ -31,3 +31,7 @@ Professor Requirements
   - Cross-platform
   - Minimal and clean code
 
+  - UI Requirements
+    - Menu
+    - Keyboard shortcuts
+    - Status bar
