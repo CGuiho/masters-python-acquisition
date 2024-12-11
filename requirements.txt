@@ -8,3 +8,8 @@ Data overview: the data represents the daily consumption of electricity in Franc
 Deadline
   - 2025-05-13
 
+Features
+  - Data source - user choice
+    - Retrieve from internet
+    - Load a local file
+
