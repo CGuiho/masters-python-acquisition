@@ -1,0 +1,10 @@
+Copyright © 2024 Cristóvão GUIHO. All Rights Reserved.
+
+data
+  - https://odre.opendatasoft.com/explore/dataset/consommation-quotidienne-brute/information/
+
+Data overview: the data represents the daily consumption of electricity in France.
+
+Deadline
+  - 2025-05-13
+
