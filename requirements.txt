@@ -13,3 +13,12 @@ Features
     - Retrieve from internet
     - Load a local file
 
+  - Output
+    - User can ask for a specific output
+      - Max consumption
+      - Min consumption
+      - Total of days with consumption above a certain threshold
+      - Total of days with consumption below a certain threshold
+      - Average consumption
+
+
