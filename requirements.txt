@@ -22,3 +22,12 @@ Features
       - Average consumption
 
 
+Professor Requirements
+  - Language: Python
+  - POO
+  - PEP8
+  - Documentation compatible with Sphinx, PEP257 mini
+  - UI in PyQt / QtDesigner
+  - Cross-platform
+  - Minimal and clean code
+
