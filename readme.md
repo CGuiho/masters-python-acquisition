@@ -123,11 +123,11 @@ L'utilisation de commits descriptifs et de tags pour les versions rendra votre p
 3.  **Compiler le fichier UI (si nécessaire) :**
     Si vous avez modifié `design.ui` et que `design_ui.py` n'est pas à jour :
     ```bash
-    pyside6-uic chemin/vers/design.ui -o chemin/vers/design_ui.py
+    pyside6-uic source/design.ui -o source/design_ui.py
     ```
 4.  **Exécuter l'application :**
     ```bash
-    python chemin/vers/main.py
+    python source/main.py
     ```
 
 ---
