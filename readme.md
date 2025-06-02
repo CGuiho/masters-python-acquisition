@@ -89,15 +89,15 @@ Les tags sont utilisés pour marquer des points spécifiques dans l'historique d
 **Utilisation des tags pour ce projet :**
 
 * **Versions :** Lorsque vous atteignez une version stable de votre application (par exemple, une version fonctionnelle avec un ensemble de fonctionnalités clés), vous pouvez la taguer.
-    * `git tag -a v0.1.0 -m "Version 0.1.0 : Récupération et affichage des statistiques de base"`
-    * `git tag -a v0.2.0 -m "Version 0.2.0 : Ajout de la fonctionnalité d'export CSV"`
-    * `git tag -a v1.0.0 -m "Version 1.0.0 : Première version stable complète"`
+    * `git tag -a 0.1.0 -m "Version 0.1.0 : Récupération et affichage des statistiques de base"`
+    * `git tag -a 0.2.0 -m "Version 0.2.0 : Ajout de la fonctionnalité d'export CSV"`
+    * `git tag -a 1.0.0 -m "Version 1.0.0 : Première version stable complète"`
 * **Publication des tags :** Pour partager vos tags avec un dépôt distant (comme GitHub) :
-    * `git push origin v0.1.0` (pour un tag spécifique)
+    * `git push origin 0.1.0` (pour un tag spécifique)
     * `git push origin --tags` (pour tous les tags)
 * **Consulter les tags :**
     * `git tag` (liste tous les tags)
-    * `git show v0.1.0` (montre les informations du tag et le commit associé)
+    * `git show 0.1.0` (montre les informations du tag et le commit associé)
 
 L'utilisation de commits descriptifs et de tags pour les versions rendra votre projet beaucoup plus facile à maintenir, à comprendre et à potentiellement revenir à des états antérieurs si nécessaire.
 
