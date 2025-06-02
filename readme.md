@@ -7,8 +7,8 @@ Copyright © 2025 Cristóvão GUIHO. Tous droits réservés.
 **Auteur:** Cristóvão GUIHO
 - M2 3EA T3I
 
-**Master:** Électronique, Énergie Électrique, Automatique - Parcours Traitement de l'Information et Instrumentation pour l'Ingénieur
-**Projet:** Programmation et Acquisition
+- **Master:** Électronique, Énergie Électrique, Automatique - Parcours Traitement de l'Information et Instrumentation pour l'Ingénieur
+- **Projet:** Programmation et Acquisition
 
 ---
 
