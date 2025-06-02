@@ -1,11 +1,11 @@
 # main.py
 import sys
-import pandas as pd # For type hinting and potential direct use if needed
+import pandas as pd # Pour l'annotation de type et une utilisation directe potentielle si nécessaire
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QFileDialog
-from PySide6.QtCore import Qt # QTimer can be added later if needed
+from PySide6.QtCore import Qt # QTimer peut être ajouté plus tard si nécessaire
 
-# Import your generated UI class and DataHandler class
-from design_ui import Ui_MainWindow  # Assuming your new UI file is design_ui.py
+# Importer votre classe UI générée et la classe DataHandler
+from design_ui import Ui_MainWindow  # En supposant que votre nouveau fichier UI est design_ui.py
 from data_handler import DataHandler
 
 class MainWindow(QMainWindow):
@@ -15,25 +15,25 @@ class MainWindow(QMainWindow):
     self.ui = Ui_MainWindow()
     self.ui.setupUi(self)
 
-    self.setWindowTitle("Analyse de Consommation d'Énergie") # Set a window title
+    self.setWindowTitle("Analyse de Consommation d'Énergie") # Définir un titre de fenêtre
 
     self.data_handler = DataHandler()
 
-    # --- Connect UI element signals to methods ---
+    # --- Connecter les signaux des éléments UI aux méthodes ---
     self.ui.fetch_data.clicked.connect(self.handle_fetch_data_and_update_stats)
     self.ui.save_csv.clicked.connect(self.handle_save_csv)
 
-    # --- Initial UI State ---
+    # --- État initial de l'interface utilisateur ---
     self.clear_stats_labels()
     self.ui.statusbar.showMessage("Prêt. Cliquez sur 'Récupérer Les Données' pour commencer.", 5000)
     print("MainWindow initialisée. Interface utilisateur configurée.")
     
-    # The QGraphicsView named 'graphicsView' is available as self.ui.graphicsView
-    # Plotting logic can be added here or in a dedicated method later.
-    # For now, it will be an empty view.
+    # Le QGraphicsView nommé 'graphicsView' est disponible via self.ui.graphicsView
+    # La logique de traçage peut être ajoutée ici ou dans une méthode dédiée plus tard.
+    # Pour l'instant, ce sera une vue vide.
 
   def clear_stats_labels(self):
-    """Resets all statistics display labels to '0.0' or 'N/A'."""
+    """Réinitialise toutes les étiquettes d'affichage des statistiques à '0.0' ou 'N/A'."""
     self.ui.stats_main.setText("0.0")
     self.ui.stats_std.setText("0.0")
     self.ui.stats_variance.setText("0.0")
@@ -43,23 +43,23 @@ class MainWindow(QMainWindow):
 
   def handle_fetch_data_and_update_stats(self):
     """
-    Handles the 'fetch_data' button click.
-    Fetches data, calculates statistics, and updates the UI labels.
+    Gère le clic sur le bouton 'fetch_data'.
+    Récupère les données, calcule les statistiques et met à jour les étiquettes de l'interface utilisateur.
     """
     print("Bouton 'Récupérer Les Données' cliqué.")
     self.ui.statusbar.showMessage("Récupération des données en cours...", 3000)
-    QApplication.processEvents()  # Keep UI responsive
+    QApplication.processEvents()  # Garder l'interface utilisateur réactive
 
-    # Fetch data (e.g., 200 records for a decent sample for stats)
+    # Récupérer les données (par exemple, 200 enregistrements pour un échantillon décent pour les statistiques)
     success = self.data_handler.fetch_data_from_api(limit=200)
 
     if success and not self.data_handler.dataframe.empty:
       self.ui.statusbar.showMessage("Données récupérées. Calcul des statistiques...", 3000)
       df = self.data_handler.dataframe
       
-      # --- Choose the column for statistical analysis ---
-      # Let's use 'consommation_brute_totale' for this example.
-      # Ensure this column exists after processing in DataHandler.
+      # --- Choisir la colonne pour l'analyse statistique ---
+      # Utilisons 'consommation_brute_totale' pour cet exemple.
+      # S'assurer que cette colonne existe après le traitement dans DataHandler.
       stats_column_name = 'consommation_brute_totale'
 
       if stats_column_name not in df.columns:
@@ -70,24 +70,24 @@ class MainWindow(QMainWindow):
         self.clear_stats_labels()
         return
 
-      # --- Calculate Statistics ---
-      # The DataHandler already converts consumption columns to numeric and fills NaNs with 0.
-      # This fillna(0) will affect statistics like min, std, variance if there were many NaNs.
+      # --- Calculer les statistiques ---
+      # Le DataHandler convertit déjà les colonnes de consommation en numérique et remplit les NaN avec 0.
+      # Ce fillna(0) affectera les statistiques comme min, std, variance s'il y avait beaucoup de NaN.
       selected_series = df[stats_column_name]
       
       mean_val = selected_series.mean()
       std_val = selected_series.std()
       var_val = selected_series.var()
       max_val = selected_series.max()
-      min_val = selected_series.min() # Will be 0 if there were NaNs filled with 0 and no other zeros
+      min_val = selected_series.min() # Sera 0 s'il y avait des NaN remplis avec 0 et aucun autre zéro
 
       print(f"Statistiques pour '{stats_column_name}':")
       print(f"  Moyenne: {mean_val:.2f}, Ecart-type: {std_val:.2f}, Variance: {var_val:.2f}")
       print(f"  Min: {min_val:.2f}, Max: {max_val:.2f}")
 
-      # --- Update UI Labels with calculated statistics ---
-      # The descriptive labels (e.g., stats_main_label) are not changed.
-      self.ui.stats_main.setText(f"{mean_val:,.2f}") # Added comma for thousands
+      # --- Mettre à jour les étiquettes de l'interface utilisateur avec les statistiques calculées ---
+      # Les étiquettes descriptives (par exemple, stats_main_label) ne sont pas modifiées.
+      self.ui.stats_main.setText(f"{mean_val:,.2f}") # Ajout d'une virgule pour les milliers
       self.ui.stats_std.setText(f"{std_val:,.2f}")
       self.ui.stats_variance.setText(f"{var_val:,.2f}")
       self.ui.stats_max.setText(f"{max_val:,.2f}")
@@ -95,11 +95,11 @@ class MainWindow(QMainWindow):
       
       self.ui.statusbar.showMessage("Statistiques mises à jour.", 5000)
 
-      # You could also update the QTextBrowser with a general summary if desired
+      # Vous pourriez également mettre à jour le QTextBrowser avec un résumé général si vous le souhaitez
       # summary_text = self.data_handler.get_summary()
-      # self.ui.textBrowser.setText(summary_text) # Be careful, textBrowser has pre-filled HTML
+      # self.ui.textBrowser.setText(summary_text) # Attention, textBrowser a du HTML pré-rempli
       
-      # Placeholder for updating the plot
+      # Espace réservé pour la mise à jour du graphique
       # self.update_plot(df) 
 
     elif success and self.data_handler.dataframe.empty:
@@ -117,8 +117,8 @@ class MainWindow(QMainWindow):
 
   def handle_save_csv(self):
     """
-    Handles the 'save_csv' button click.
-    Opens a dialog to save the current dataframe to a CSV file.
+    Gère le clic sur le bouton 'save_csv'.
+    Ouvre une boîte de dialogue pour enregistrer le dataframe actuel dans un fichier CSV.
     """
     print("Bouton 'Sauvegarder en CSV' cliqué.")
     if self.data_handler.dataframe.empty:
@@ -126,13 +126,13 @@ class MainWindow(QMainWindow):
       print("Aucune donnée à exporter.")
       return
 
-    # Propose a default filename with a timestamp or based on data range
+    # Proposer un nom de fichier par défaut avec un horodatage ou basé sur la plage de données
     default_filename = "consommation_quotidienne_export.csv"
     
     filePath, _ = QFileDialog.getSaveFileName(
       self,
       "Sauvegarder le fichier CSV",
-      default_filename, # Default filename
+      default_filename, # Nom de fichier par défaut
       "Fichiers CSV (*.csv);;Tous les fichiers (*)"
     )
 
@@ -152,10 +152,10 @@ class MainWindow(QMainWindow):
       print("Sauvegarde CSV annulée par l'utilisateur.")
 
   # def update_plot(self, dataframe):
-  # """Placeholder for plot updating logic using self.ui.graphicsView."""
+  # """Espace réservé pour la logique de mise à jour du graphique utilisant self.ui.graphicsView."""
   # print("Mise à jour du graphique (logique à implémenter).")
-  # # Example: if using pyqtgraph, you might have a PlotWidget or add a PlotItem
-  # # self.ui.graphicsView.clear() # Or equivalent for your plotting library
+  # # Exemple : si vous utilisez pyqtgraph, vous pourriez avoir un PlotWidget ou ajouter un PlotItem
+  # # self.ui.graphicsView.clear() # Ou équivalent pour votre bibliothèque de traçage
   # # self.ui.graphicsView.plot(dataframe['date_heure'], dataframe['consommation_brute_totale'])
 
 
@@ -164,3 +164,4 @@ if __name__ == '__main__':
   window = MainWindow()
   window.show()
   sys.exit(app.exec())
+
