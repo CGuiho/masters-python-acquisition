@@ -35,9 +35,9 @@ class DataHandler:
       bool: True si la récupération des données a réussi, False sinon.
     """
     params = {
-      "limit": limit,
-      "offset": offset,
-      "order_by": "date_heure DESC" # Obtenir les données les plus récentes
+      "limit": 100,
+      # "offset": offset,
+      # "order_by": "date_heure DESC" # Obtenir les données les plus récentes
     }
     print(f"Récupération des données depuis l'API : {self.api_url} avec les paramètres : {params}")
     try:
